@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="jquery-3.4.1.js"></script>
+    <title>Title</title>
+    <style>
+        .flex-column{-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-ms-flex-direction:column!important;flex-direction:column!important}
+
+        #acceleration{margin-left: 15px;
+            margin-top: 25px;
+            float: left;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            vertical-align: middle;
+            background-color:#d6d9db
+        }
+        #angular_velocity{margin-left: 15px;
+            margin-top: 25px;
+            float: left;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            vertical-align: middle;
+            background-color:#d6d9db
+
+        }
+        #angle{margin-left: 15px;
+            margin-top: 25px;
+            float: left;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            vertical-align: middle;
+            background-color:#d6d9db
+
+        }
+        #magnetic_field{
+            margin-left: 15px;
+            margin-top: 25px;
+            float: left;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            vertical-align: middle;
+            background-color: #d6d9db
+
+        }
+        #voltage{
+            margin-left: 15px;
+            margin-top: 25px;
+            float: left;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            vertical-align: middle;
+            background-color: #d6d9db
+
+
+        }
+        @media screen and (max-width: 340px){
+            *{margin: 0;padding: 0}
+
+        }
+    </style>
+</head>
+    <body style="background-color: #c9d1d9">
+        <nav class="left" style="margin-top: 180px">
+            <ul class="nav flex-column" style="list-style: none">
+                <li class="nav-item" >
+                   <a href="acceleration.html " target="iframeRight"><input id="acceleration" value="加速度" type="button"></a>
+                    <ul id="value" style="list-style: none;display: inline-block;text-align: center;margin-left: 10px ">
+                        <li style="text-align: right" >
+                            x
+                            <input id="x_value_acceleration" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            y
+                            <input id="y_value_acceleration" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            z
+                            <input id="z_value_acceleration" type="text"  style="width: 80px;text-align: center">
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item" style="margin-top: 20px">
+                    <a href="angular_velocity.html" target="iframeRight"><input id="angular_velocity" value="角速度" type="button"></a>
+                    <ul id="value" style="list-style: none;display: inline-block;text-align: center;margin-left: 10px ">
+                        <li style="text-align: right" >
+                            x
+                            <input id="x_value_angular_velocity" type="text" style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            y
+                            <input id="y_value_angular_velocity" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            z
+                            <input id="z_value_angular_velocity" type="text"  style="width: 80px;text-align: center">
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item" style="margin-top: 20px">
+                    <a href="angle.html" target="iframeRight"><input id="angle" value="角度" type="button"></a>
+                    <ul id="value" style="list-style: none;display: inline-block;text-align: center;margin-left: 10px ">
+                        <li style="text-align: right" >
+                            x
+                            <input id="x_value_angle" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            y
+                            <input id="y_value_angle" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            z
+                            <input id="z_value_angle" type="text"  style="width: 80px;text-align: center">
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item" style="margin-top: 40px">
+                    <a href="magnetic_field.html" target="iframeRight"><input id="magnetic_field" value="磁场" type="button"></a>
+                    <ul id="value" style="list-style: none;display: inline-block;text-align: center ;margin-left: 10px">
+                        <li style="text-align: right" >
+                            x
+                            <input id="x_value_magnetic_field" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            y
+                            <input id="y_value_magnetic_field" type="text"  style="width: 80px;text-align: center">
+                        </li>
+                        <li style="text-align: right">
+                            z
+                            <input id="z_value_magnetic_field" type="text"  style="width: 80px;text-align: center">
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item" style="margin-top: 40px">
+                    <a href="voltage.html" target="iframeRight"><input id="voltage" value="应变片端电压" type="button"></a>
+                    <ul id="value" style="list-style: none;display: inline-block;text-align: center ;margin-left: 10px">
+                    <input id="value_voltage" type="text"  style="width: 80px;margin-left:10px;margin-top: 27px;text-align: center">
+                </li>
+            </ul>
+        </nav>
+    <script>
+       function reqs() {
+           $.ajax({
+               type:'post',
+               datatype:'json',
+               url:'http://172.18.171.150:8081/data/live',
+               async:'true',
+               success:function (data) {
+                   console.log(data);
+                   $('#value_voltage').val(data.voltage);
+                   $('#x_value_acceleration').val(data.acceleration_x);
+                   $('#y_value_acceleration').val(data.acceleration_y);
+                   $('#z_value_acceleration').val(data.acceleration_z);
+                   $('#x_value_angular_velocity').val(data.angular_velocity_x);
+                   $('#y_value_angular_velocity').val(data.angular_velocity_y);
+                   $('#z_value_angular_velocity').val(data.angular_velocity_z);
+                   $('#x_value_angle').val(data.angle_x);
+                   $('#y_value_angle').val(data.angle_y);
+                   $('#z_value_angle').val(data.angle_z);
+                   $('#x_value_magnetic_field').val(data.magnetic_field_x);
+                   $('#y_value_magnetic_field').val(data.magnetic_field_y);
+                   $('#z_value_magnetic_field').val(data.magnetic_field_z);
+
+               }
+           });
+
+       }
+       reqs();
+       setInterval(reqs,10000)
+    </script>
+</body>
+</html>

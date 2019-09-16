@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>acceleration</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+    <style>
+        #cc{width:600px;height: 600px;border:1px solid black;border-radius: 25px}
+    </style>
+</head>
+<body>
+    <div id="cc"></div>
+    <script>
+        var mychart=echarts.init(document.getElementById('cc'))
+        var option={
+            title:{
+                text:'acceleration_x',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:['1','2','3','4','5','6','7','8','9','10'],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}m/s^2'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'acceleration_x',
+                    type:'line',
+                    data:[12,14,15,16,17,18,19,20,24,25],
+                    markPoint:{
+                        data:[
+                            {type:'max',name:'最大值'},
+                            {type:'min',name:'最小值'}
+                        ]
+                    },
+                },
+                {
+                    name:'acceleration_y',
+                    type:'line',
+                    data:[19,18,7,5,7,8,9,0,4,5],
+                    markPoint:{
+                        data:[
+                            {type:'max',name:'最大值'},
+                            {type:'min',name:'最小值'}
+                        ]
+                    },
+
+                }
+            ],
+
+        }
+        mychart.setOption(option);
+    </script>
+</body>
+</html>

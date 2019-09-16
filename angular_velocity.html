@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular_velocity</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+    <style>
+        .top{width:1500.39px;height: 100%;display: flex;justify-content: space-around;margin-top: 50px}
+        #angular_velocity_x{width:350px;height:300px;border:1px solid black;border-radius: 25px}
+        #angular_velocity_y{width:350px;height:300px;border:1px solid black;border-radius: 25px}
+        #angular_velocity_z{width:350px;height:300px;border:1px solid black;border-radius: 25px}
+        .top{top:25%;position: absolute}
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div id="angular_velocity_x"></div>
+        <div id="angular_velocity_y"></div>
+        <div id="angular_velocity_z"></div>
+    </div>
+    <script>
+        var mychart1 = echarts.init(document.getElementById('angular_velocity_x'));
+        //绘制图表
+        var option={
+            title:{
+                text:'angular_velocity_x',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'angular_velocity_x',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        }
+        mychart1.setOption(option);
+        var mychart2 = echarts.init(document.getElementById('angular_velocity_y'));
+        //绘制图表
+        var option={
+            title:{
+                text:'angular_velocity_y',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'angular_velocity_y',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        }
+        mychart2.setOption(option);
+        var mychart3 = echarts.init(document.getElementById('angular_velocity_z'));
+        //绘制图表
+        var option={
+            title:{
+                text:'angular_velocity_z',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'angular_velocity_z',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        }
+        mychart3.setOption(option);
+        window.onresize=function () {
+            for(var i=0;i<echarts.length;i++){
+                echarts[i].resize();
+            }
+        };
+        var times_x=[];
+        var nums_x=[];//存放x方向的时间与数值
+        var times_y=[];
+        var nums_y=[];//存放y方向的时间与数值
+        var times_z=[];
+        var nums_z=[];//存放z方向的时间与数值
+        function reqs() {
+            $.ajax({
+                type:"post",
+                async:true,
+                url:'http://172.18.171.150:8081/data/live',
+                datatype: "json",
+                success:function (data) {
+                    times_x.push(data.time);
+                    nums_x.push(data.angular_velocity_x);
+                    times_y.push(data.time);
+                    nums_y.push(data.angular_velocity_y);
+                    times_z.push(data.time);
+                    nums_z.push(data.angular_velocity_z);
+                    mychart1.hideLoading();
+                    mychart1.setOption({
+                        xAxis:{
+                            data:times_x
+                        },
+                        series:[{
+                            name:'angular_velocity_x',
+                            data:nums_x,
+                        }]
+
+                    });
+                    mychart2.hideLoading();
+                    mychart2.setOption({
+                        xAxis:{
+                            data:times_y
+                        },
+                        series:[{
+                            name:'angular_velocity_y',
+                            data:nums_y,
+                        }]
+                    });
+                    mychart3.hideLoading();
+                    mychart3.setOption({
+                        xAxis:{
+                            data:times_z,
+                        },
+                        series:[{
+                            name:'angular_velocity_z',
+                            data:nums_z,
+                        }]
+                    });
+                }
+            })
+        }
+        reqs();
+        setInterval(reqs,10000)
+
+    </script>
+</body>
+</html>

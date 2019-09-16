@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"></script>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+
+    <style>
+        #voltage{width:700px;height:600px;border:1px solid black;border-radius: 25px;margin: auto;margin-top: 120px}
+    </style>
+</head>
+<body>
+    <div style="width:1500.39px;height: 100%;">
+        <div id="voltage"></div>
+    </div>
+    <script>
+        var mychart1=echarts.init(document.getElementById('voltage'));
+        var option={
+            title:{
+                text:'voltage',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}V'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'voltage',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        }
+        mychart1.setOption(option);
+        var times=[];
+        var nums=[];
+        function reqs() {
+            $.ajax({
+                type:'post',
+                async:'true',
+                url:'http://172.18.171.150:8081/data/live',
+                datatype:'json',
+                success:function (data) {
+                    times.push(data.time);
+                    nums.push(data.voltage);
+                    //console.log(data.voltage);
+                    mychart1.setOption({
+                      xAxis:{
+                          data:times,
+                      },
+                      series:[{
+                          name:'voltage',
+                          data:nums,
+                      }]
+                    });
+                },
+            })
+        }
+        reqs();
+        setInterval(reqs,10000)
+    </script>
+</body>
+</html>

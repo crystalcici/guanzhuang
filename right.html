@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"></script>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+    <style>
+        .top{width:1500.39px;display: flex;justify-content: space-around;margin-top: 30px}
+        #voltage{width:350px;height:300px;border: 1px solid black;border-radius: 25px}
+        .bottom{width:1500.39px;display:flex;justify-content: space-around;margin-top: 30px;margin-left: 8px}
+        #acceleration,#angle,#angular_velocity,#magnetic_field{width:350px;height:300px;border: 1px solid black;border-radius: 25px}
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div id="voltage"></div>
+    </div>
+    <div class="bottom">
+        <div id="acceleration"></div>
+        <div id="angular_velocity"></div>
+        <div id="angle"></div>
+        <div id="magnetic_field"></div>
+    </div>
+    <script>
+        var mychart1=echarts.init(document.getElementById('voltage'));
+        var option={
+            title:{
+                text:'voltage',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}V'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'voltage',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        };
+        mychart1.setOption(option);
+        var mychart2=echarts.init(document.getElementById('acceleration'));
+        var option={
+            title:{
+                text:'acceleration',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'acceleration_x',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'acceleration_y',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'acceleration_z',
+                    type:'line',
+                    data:[],
+                }
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        };
+        mychart2.setOption(option);
+        var mychart3=echarts.init(document.getElementById('angular_velocity'));
+        var option={
+            title:{
+                text:'angular_velocity',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'angular_velocity_x',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'angular_velocity_y',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'angular_velocity_z',
+                    type:'line',
+                    data:[],
+                },
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        };
+        mychart3.setOption(option);
+        var mychart4=echarts.init(document.getElementById('angle'));
+        var option={
+            title:{
+                text:'angle',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}°'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'angle_x',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'angle_y',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'angle_z',
+                    type:'line',
+                    data:[],
+                },
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        };
+        mychart4.setOption(option);
+        var mychart5=echarts.init(document.getElementById('magnetic_field'));
+        var option={
+            title:{
+                text:'magnetic_field',
+                x:'center'
+            },
+            tooltip:{
+                trigger:'axis',
+                axisPointer:{
+                    animation:'false'
+                }
+            },
+            xAxis:[
+                {
+                    type:'category',
+                    boundaryGap:false,
+                    data:[],
+                    axisTick:{
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        interval:0,
+                        rotate:"45",
+                        show:true
+                    },
+                }
+            ],
+            yAxis:[
+                {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}T'
+                    }
+                }
+            ],
+            series:[
+                {
+                    name:'magnetic_field_x',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'magnetic_field_y',
+                    type:'line',
+                    data:[],
+                },
+                {
+                    name:'magnetic_field_z',
+                    type:'line',
+                    data:[],
+                },
+            ],
+            dataZoom:[
+                {
+                    type:'slider',
+                    xAxisIndex:0,
+                    start:10,
+                    end:60
+                },
+                {
+                    type:'inside',
+                    xAxisIndex: 0,
+                    start: 10,
+                    end:60
+                },
+            ],
+        };
+        mychart5.setOption(option);
+        var times_voltage=[];
+        var nums_voltage=[];
+        var times_acceleration=[];
+        var nums_x_acceleration=[];
+        var nums_y_acceleration=[];
+        var nums_z_acceleration=[];
+        var times_angular_velocity=[];
+        var nums_x_angular_velocity=[];
+        var nums_y_angular_velocity=[];
+        var nums_z_angular_velocity=[];
+        var times_angle=[];
+        var nums_x_angle=[];
+        var nums_y_angle=[];
+        var nums_z_angle=[];
+        var times_magnetic_field=[];
+        var nums_x_magnetic_field=[];
+        var nums_y_magnetic_field=[];
+        var nums_z_magnetic_field=[];
+        function reqs() {
+            $.ajax({
+               type:'post',
+               async:'true',
+               url:'http://172.18.171.150:8081/data/live',
+               datatype:'json',
+                success:function (data) {
+                   times_voltage.push(data.time);
+                   nums_voltage.push(data.voltage);
+                   times_acceleration.push(data.time);
+                   nums_x_acceleration.push(data.acceleration_x);
+                   nums_y_acceleration.push(data.acceleration_y);
+                   nums_z_acceleration.push(data.acceleration_z);
+                   times_angular_velocity.push(data.time);
+                   nums_x_angular_velocity.push(data.angular_velocity_x);
+                   nums_y_angular_velocity.push(data.angular_velocity_y);
+                   nums_z_angular_velocity.push(data.angular_velocity_z);
+                   times_angle.push(data.time);
+                   nums_x_angle.push(data.angle_x);
+                   nums_y_angle.push(data.angle_y);
+                   nums_z_angle.push(data.angle_z);
+                   times_magnetic_field.push(data.time);
+                   nums_x_magnetic_field.push(data.magnetic_field_x);
+                   nums_y_magnetic_field.push(data.magnetic_field_y);
+                   nums_z_magnetic_field.push(data.magnetic_field_z);
+                   mychart1.hideLoading();
+                   mychart1.setOption({
+                       xAxis:{
+                           data:times_voltage,
+                       },
+                       series:[
+                           {
+                           name:'voltage',
+                           data:nums_voltage,
+                       }
+                       ]
+                   });
+                   mychart2.hideLoading();
+                   mychart2.setOption({
+                       xAxis:{
+                           data:times_acceleration,
+                       },
+                       series:[
+                           {
+                               name:'acceleration_x',
+                               data:nums_x_acceleration,
+                           },
+                           {
+                               name:'acceleration_y',
+                               data:nums_y_acceleration,
+                           },
+                           {
+                               name:'acceleration_z',
+                               data:nums_z_acceleration,
+                           },
+                       ]
+                   });
+                   mychart3.hideLoading();
+                   mychart3.setOption({
+                       xAxis:{
+                           data:times_angular_velocity,
+                       },
+                       series:[
+                           {
+                               name:'angular_velocity_x',
+                               data:nums_x_angular_velocity,
+                           },
+                           {
+                               name:'angular_velocity_y',
+                               data:nums_y_angular_velocity,
+                           },
+                           {
+                               name:'angular_velocity_z',
+                               data:nums_z_angular_velocity,
+                           },
+                       ]
+                   });
+                   mychart4.hideLoading();
+                   mychart4.setOption({
+                       xAxis:{
+                           data: times_angle,
+                       },
+                       series:[
+                           {
+                               name:'angle_x',
+                               data:nums_x_angle,
+                           },
+                           {
+                               name:'angle_y',
+                               data:nums_y_angle,
+                           },
+                           {
+                               name:'angle_z',
+                               data:nums_z_angle,
+                           },
+                       ]
+                   });
+                    mychart5.hideLoading();
+                    mychart5.setOption({
+                        xAxis:{
+                            data:times_magnetic_field,
+                        },
+                        series:[
+                            {
+                                name:'magnetic_field_x',
+                                data:nums_x_magnetic_field,
+                            },
+                            {
+                                name:'magnetic_field_y',
+                                data:nums_y_magnetic_field,
+                            },
+                            {
+                                name:'magnetic_field_z',
+                                data:nums_z_magnetic_field,
+                            },
+                        ]
+                    });
+                }
+            });
+        }
+        reqs();
+        setInterval(reqs,10000)
+    </script>
+</body>
+</html>
